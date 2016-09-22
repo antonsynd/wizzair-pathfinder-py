@@ -149,7 +149,7 @@ def print_info(ds, code):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
-            description='damn is a general-purpose dependency manager')
+            description='Determines the shortest path between current Wizz Air destinations')
     subparser = parser.add_subparsers(dest='subcommand')
 
     list_parser = subparser.add_parser(sc_list, help='List all available destinations')
