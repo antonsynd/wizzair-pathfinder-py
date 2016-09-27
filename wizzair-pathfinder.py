@@ -140,7 +140,8 @@ def print_info(ds, code):
         city = city_map[code]
 
         print('%s (%s)' % (city['name'], code), flush=True)
-        print(' -> ' + '; '.join(['%s (%s)' % (ccity['name'], ciata) for ciata, ccity in city['connected'].items() if ccity is not None]))
+        sorted_destinations = sorted(city['connected'].items())
+        print(' -> ' + '; '.join(['%s (%s)' % (ccity['name'], ciata) for ciata, ccity in sorted_destinations if ccity is not None]))
     else:
         print('\'%s\' is either an invalid or unserved Wizz Air destination' % code)
 
@@ -170,6 +171,8 @@ if __name__ == '__main__':
     if args.subcommand == sc_list:
         list_destinations(ds)
     elif args.subcommand == sc_find_route:
-        find_route(ds, args.start.strip(), args.end.strip())
+        find_route(ds, args.start.strip().upper(), args.end.strip().upper())
     elif args.subcommand == sc_info:
-        print_info(ds, args.code.strip())
+        print_info(ds, args.code.strip().upper())
+    else:
+        parser.print_help()
